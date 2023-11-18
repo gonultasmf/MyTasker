@@ -3,11 +3,33 @@
     x:Class="MyTasker.Mobile.Views.HomePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="HomePage">
-    <VerticalStackLayout>
+    Title="MyTasker">
+
+    <Grid Padding="10" RowDefinitions=".07*,.2*,.12*,.21*,.1*,.3*">
         <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+            Grid.Row="0"
+            FontAttributes="Italic"
+            FontSize="22"
+            Text="{Binding UserText}" />
+
+        <Label
+            Grid.Row="1"
+            FontAttributes="Bold"
+            FontSize="32"
+            Text="You don't have tasks for this month yet!" />
+
+        <Frame
+            Grid.Row="2"
+            Margin="25,15"
+            BackgroundColor="LightGray">
+            <SearchBar
+                x:Name="searchBar"
+                Margin="-20"
+                Placeholder="Search a task..."
+                SearchCommand="{Binding SearchCommand}"
+                SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}" />
+        </Frame>
+
+    </Grid>
+
 </ContentPage>
