@@ -3,13 +3,60 @@
     x:Class="MyTasker.Mobile.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MyTasker.Mobile"
-    Shell.FlyoutBehavior="Disabled"
-    Title="MyTasker.Mobile">
+    xmlns:local="clr-namespace:MyTasker.Mobile.Views"
+    FlyoutBackgroundColor="{AppThemeBinding Dark=Black,
+                                            Light=White}"
+    Shell.BackgroundColor="{AppThemeBinding Dark=Black,
+                                            Light=White}"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.ForegroundColor="{AppThemeBinding Dark=White,
+                                            Light=Black}"
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="False"
+    Shell.TitleColor="{AppThemeBinding Dark=White,
+                                       Light=Black}">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <Shell.FlyoutHeader>
+        <Image Source="icontasker.png" />
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Home Page"
+            ContentTemplate="{DataTemplate local:HomePage}"
+            Icon="home.png"
+            Route="HomePage" />
+
+        <ShellContent
+            Title="Create Task"
+            ContentTemplate="{DataTemplate local:AddTaskPage}"
+            Icon="writing.png"
+            Route="AddTaskPage" />
+
+        <ShellContent
+            Title="List Task"
+            ContentTemplate="{DataTemplate local:ListTaskPage}"
+            Icon="todolist.png"
+            Route="ListTaskPage" />
+
+        <ShellContent
+            Title="Favorite Tasks"
+            ContentTemplate="{DataTemplate local:FavoriteTasksPage}"
+            Icon="favorite.png"
+            Route="FavoriteTasksPage" />
+
+        <ShellContent
+            Title="Deleted Tasks"
+            ContentTemplate="{DataTemplate local:DeletedTasksPage}"
+            Icon="recyclebin.png"
+            Route="DeletedTasksPage" />
+
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate local:SettingsPage}"
+            Icon="setting.png"
+            Route="SettingsPage" />
+
+    </FlyoutItem>
 
 </Shell>
