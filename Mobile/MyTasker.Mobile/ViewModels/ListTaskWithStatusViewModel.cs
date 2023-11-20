@@ -2,4 +2,5 @@
 
 public partial class ListTaskWithStatusViewModel : BaseViewModel
 {
+    public static int StatusValue { get; set; }
 }

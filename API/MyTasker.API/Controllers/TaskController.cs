@@ -42,11 +42,22 @@ public class TaskController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("GetThisMonthTasksCount")]
+    public async Task<IActionResult> GetThisMonthTasksCount()
+    {
+        var date = DateTime.Now;
+        var dateMin = new DateTime(date.Year, date.Month, 1);
+        var dateMax = new DateTime(date.Year, date.Month + 1, 1).AddDays(-1);
+        var result = await _taskModelRepository.GetCountAsync(x => x.TaskDate >= dateMin && x.TaskDate <= dateMax);
+
+        return Ok(result);
+    }
+
     [HttpGet("GetAllWithToday")]
     public async Task<IActionResult> GetAllWithDayTask()
     {
         var result = await _taskModelRepository.GetAllAsync(x => x.TaskDate.Date == DateTime.Now.Date);
-        var temp = DateTime.Now.Date.ToString();
+
         return Ok(result);
     }
 

@@ -8,6 +8,7 @@ public interface IGenericRepository<TSource> where TSource : BaseModel
 {
     DbSet<TSource> Table {  get; }
     Task<int> SaveAsync();
+    int Save();
 
     Task<List<TSource>?> GetAllAsync();
     Task<List<TSource>?> GetAllAsync(Expression<Func<TSource, bool>> filter);
