@@ -1,12 +1,108 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MyTasker.Mobile.Views.AddTaskPage"
-             Title="AddTaskPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+<ContentPage
+    x:Class="MyTasker.Mobile.Views.AddTaskPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    Title="AddTaskPage">
+
+    <VerticalStackLayout Padding="15,5" Spacing="10">
+        <material:TextField
+            Title="Title"
+            AccentColor="Red"
+            Text="{Binding Title}"
+            TitleColor="Black" />
+        <HorizontalStackLayout Spacing="10">
+            <material:DatePickerField
+                x:Name="DateField"
+                Title="Date"
+                Padding="0,10,10,0"
+                AccentColor="Red"
+                AllowClear="False"
+                Date="{Binding Date}"
+                TitleColor="Black"
+                WidthRequest="185" />
+
+            <material:TimePickerField
+                x:Name="TimeField"
+                Title="Time"
+                Padding="10,10,0,0"
+                AccentColor="Red"
+                AllowClear="False"
+                Time="{Binding Time}"
+                TitleColor="Black"
+                WidthRequest="185" />
+        </HorizontalStackLayout>
+
+        <material:EditorField
+            Title="Content"
+            AccentColor="Red"
+            Text="{Binding Content}"
+            TitleColor="Black" />
+
+        <Frame BorderColor="LightGray" HeightRequest="100">
+            <VerticalStackLayout>
+                <Label
+                    Padding="0,-5,0,10"
+                    FontSize="Small"
+                    Text="Color" />
+
+                <material:RadioButtonGroupView
+                    x:Name="ColorButton"
+                    CommandParameter="{Binding Source={x:Reference ColorButton}, Path=SelectedItem}"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    SelectedItemChangedCommand="{Binding SetColorCommand}"
+                    Spacing="3">
+                    <material:RadioButton
+                        CircleColor="#ff8000"
+                        Color="#ff8000"
+                        Value="#ff8000" />
+                    <material:RadioButton
+                        CircleColor="#ffbf00"
+                        Color="#ffbf00"
+                        Value="#ffbf00" />
+                    <material:RadioButton
+                        CircleColor="#bfff00"
+                        Color="#bfff00"
+                        Value="#bfff00" />
+                    <material:RadioButton
+                        CircleColor="#00ff80"
+                        Color="#00ff80"
+                        Value="#00ff80" />
+                    <material:RadioButton
+                        CircleColor="#00ffbf"
+                        Color="#00ffbf"
+                        Value="#00ffbf" />
+                    <material:RadioButton
+                        CircleColor="#00ffff"
+                        Color="#00ffff"
+                        Value="#00ffff" />
+                    <material:RadioButton
+                        CircleColor="#0080ff"
+                        Color="#0080ff"
+                        Value="#0080ff" />
+                    <material:RadioButton
+                        CircleColor="#8000ff"
+                        Color="#8000ff"
+                        Value="#8000ff" />
+                    <material:RadioButton
+                        CircleColor="#ff0080"
+                        Color="#ff0080"
+                        Value="#ff0080" />
+                </material:RadioButtonGroupView>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Button
+            BackgroundColor="Orange"
+            Command="{Binding SaveCommand}"
+            CornerRadius="20"
+            FontAttributes="Bold"
+            FontSize="Title"
+            HorizontalOptions="Center"
+            Text="SAVE"
+            WidthRequest="150" />
     </VerticalStackLayout>
+
 </ContentPage>
