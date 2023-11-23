@@ -16,10 +16,18 @@ public class TaskController : ControllerBase
         _taskModelRepository = taskModelRepository;
     }
 
+    [HttpGet("GetTrash")]
+    public async Task<IActionResult> GetTrash()
+    {
+        var result = await _taskModelRepository.GetAllAsync(x => !x.IsActive);
+
+        return Ok(result);
+    }
+
     [HttpGet("GetAll")]
     public async Task<IActionResult> GetAllTask()
     {
-        var result = await _taskModelRepository.GetAllAsync();
+        var result = await _taskModelRepository.GetAllAsync(x => x.IsActive);
 
         return Ok(result);
     }
@@ -27,7 +35,7 @@ public class TaskController : ControllerBase
     [HttpGet("GetAll/{status}")]
     public async Task<IActionResult> GetAllTask(int status)
     {
-        var result = await _taskModelRepository.GetAllAsync(x => (int)x.Status == status);
+        var result = await _taskModelRepository.GetAllAsync(x => (int)x.Status == status && x.IsActive);
 
         return Ok(result);
     }
@@ -36,8 +44,9 @@ public class TaskController : ControllerBase
     public async Task<IActionResult> GetAllTask(string search)
     {
         search = search.ToLower();
-        var result = await _taskModelRepository.GetAllAsync(x => x.Title.ToLower().Contains(search) ||
-                                                                 x.Content.ToLower().Contains(search));
+        var result = await _taskModelRepository.GetAllAsync(x => (x.Title.ToLower().Contains(search) ||
+                                                                 x.Content.ToLower().Contains(search)) &&
+                                                                 x.IsActive);
 
         return Ok(result);
     }
@@ -48,7 +57,8 @@ public class TaskController : ControllerBase
         var date = DateTime.Now;
         var dateMin = new DateTime(date.Year, date.Month, 1);
         var dateMax = new DateTime(date.Year, date.Month + 1, 1).AddDays(-1);
-        var result = await _taskModelRepository.GetCountAsync(x => x.TaskDate >= dateMin && x.TaskDate <= dateMax);
+        var result = await _taskModelRepository.GetCountAsync(x => x.TaskDate >= dateMin &&
+                                                                    x.TaskDate <= dateMax && x.IsActive);
 
         return Ok(result);
     }
@@ -56,7 +66,8 @@ public class TaskController : ControllerBase
     [HttpGet("GetAllWithToday")]
     public async Task<IActionResult> GetAllWithDayTask()
     {
-        var result = await _taskModelRepository.GetAllAsync(x => x.TaskDate.Date == DateTime.Now.Date);
+        var result = await _taskModelRepository.GetAllAsync(x => x.TaskDate.Date == DateTime.Now.Date 
+                                                                        && x.IsActive);
 
         return Ok(result);
     }
@@ -66,7 +77,7 @@ public class TaskController : ControllerBase
     {
         if (DateTime.TryParse(date, out DateTime dateTime))
         {
-            var result = await _taskModelRepository.GetAllAsync(x => x.TaskDate.Date == dateTime.Date);
+            var result = await _taskModelRepository.GetAllAsync(x => x.TaskDate.Date == dateTime.Date && x.IsActive);
 
             return Ok(result);
         }

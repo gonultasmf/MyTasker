@@ -8,5 +8,6 @@ public partial class DetailTaskPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
-	}
+        DateField.MinimumDate = DateTime.Now;
+    }
 }

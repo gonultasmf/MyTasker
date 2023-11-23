@@ -56,6 +56,8 @@
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appicon.png" />
 	  <None Remove="Resources\Images\favorite.png" />
+	  <None Remove="Resources\Images\favorite_false.png" />
+	  <None Remove="Resources\Images\favorite_true.png" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\icontasker.png" />
 	  <None Remove="Resources\Images\menu.png" />
