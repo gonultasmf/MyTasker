@@ -63,6 +63,8 @@
 	  <None Remove="Resources\Images\menu.png" />
 	  <None Remove="Resources\Images\menudark.png" />
 	  <None Remove="Resources\Images\recyclebin.png" />
+	  <None Remove="Resources\Images\remove.png" />
+	  <None Remove="Resources\Images\restore.png" />
 	  <None Remove="Resources\Images\setting.png" />
 	  <None Remove="Resources\Images\status_backlog.png" />
 	  <None Remove="Resources\Images\status_done.png" />

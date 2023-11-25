@@ -106,6 +106,22 @@
             </VerticalStackLayout>
         </Frame>
 
+        <material:PickerField
+            Title="Status"
+            AccentColor="Red"
+            SelectedIndex="{Binding Model.Status}"
+            SelectedValueChangedCommand="{Binding SetStatusCommand}"
+            TitleColor="Black">
+            <material:PickerField.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Backlog</x:String>
+                    <x:String>ToDo</x:String>
+                    <x:String>InProgress</x:String>
+                    <x:String>Done</x:String>
+                </x:Array>
+            </material:PickerField.ItemsSource>
+        </material:PickerField>
+
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="40">
             <Button
                 BackgroundColor="DarkRed"

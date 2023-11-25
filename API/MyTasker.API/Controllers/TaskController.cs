@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyTasker.API.Repositories.Abstract;
 using MyTasker.Core.Models;
 
@@ -16,10 +15,31 @@ public class TaskController : ControllerBase
         _taskModelRepository = taskModelRepository;
     }
 
+    [HttpGet("RestoreTask/{id}")]
+    public async Task<IActionResult> RestoreTask(int id)
+    {
+        var model = await _taskModelRepository.GetSingleAsync(x => x.Id == id);
+        if (model is null)
+            return NotFound();
+        model.IsActive = true;
+
+        var result = await _taskModelRepository.UpdateAsync(model);
+
+        return Ok(result);
+    }
+
     [HttpGet("GetTrash")]
     public async Task<IActionResult> GetTrash()
     {
         var result = await _taskModelRepository.GetAllAsync(x => !x.IsActive);
+
+        return Ok(result);
+    }
+
+    [HttpGet("GetFavorites")]
+    public async Task<IActionResult> GetFavorites()
+    {
+        var result = await _taskModelRepository.GetAllAsync(x => x.IsActive && x.IsFavourite);
 
         return Ok(result);
     }

@@ -26,6 +26,8 @@ public partial class DetailTaskViewModel : BaseViewModel
 
     private bool isFavorite;
 
+    private MyTaskStatus _status;
+
 
     public DetailTaskViewModel()
     {
@@ -48,6 +50,7 @@ public partial class DetailTaskViewModel : BaseViewModel
 
         Model.TaskDate = DateTime.Parse(Date.ToShortDateString() + " " + Time.ToString());
         Model.IsFavourite = isFavorite;
+        Model.Status = _status;
 
         var control = Model.TryParseToJson(out string jsonModel);
         if (!control)
@@ -103,6 +106,13 @@ public partial class DetailTaskViewModel : BaseViewModel
     {
         isFavorite = !isFavorite;
         SetImageFavorite(isFavorite);
+    }
+
+    [RelayCommand]
+    public void SetStatus(object status)
+    {
+        if (Enum.TryParse(status.ToString(), out MyTaskStatus result))
+            _status = result;
     }
 
     private void SetImageFavorite(bool control)
