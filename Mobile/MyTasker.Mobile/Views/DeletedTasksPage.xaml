@@ -3,8 +3,14 @@
     x:Class="MyTasker.Mobile.Views.DeletedTasksPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:MyTasker.Mobile.Converters"
     xmlns:viewmodel="clr-namespace:MyTasker.Mobile.ViewModels"
     Title="DeletedTasksPage">
+
+
+    <ContentPage.Resources>
+        <converter:WidthConverter x:Key="widthConverter" />
+    </ContentPage.Resources>
 
     <CollectionView x:Name="xCollectionView" ItemsSource="{Binding DeletedTasks}">
 
@@ -53,13 +59,14 @@
                                 <TapGestureRecognizer Command="{Binding Path=GotoDetailTaskPageCommand, Source={RelativeSource AncestorType={x:Type viewmodel:DeletedTasksViewModel}}}" CommandParameter="{Binding Id}" />
                             </Frame.GestureRecognizers>
 
-                            <VerticalStackLayout Spacing="15" VerticalOptions="Center">
+                            <VerticalStackLayout VerticalOptions="Center">
                                 <Label
                                     FontAttributes="Bold"
                                     Text="{Binding Title}"
                                     TextColor="LightGray" />
                                 <Label Text="{Binding Content}" TextColor="White" />
-                                <Label Text="{Binding TaskDate}" TextColor="CadetBlue" />
+                                <Label Text="{Binding TaskDate, StringFormat='{0:HH:mm}'}" TextColor="CadetBlue" />
+                                <Label Text="{Binding TaskDate, StringFormat='{0:dd MMMM dddd, yyyy}'}" TextColor="CadetBlue" />
                             </VerticalStackLayout>
                         </Frame>
                         <Frame
@@ -80,7 +87,7 @@
                                 Text="{Binding Status}"
                                 TextColor="LightGray"
                                 VerticalOptions="Center"
-                                WidthRequest="70" />
+                                WidthRequest="{Binding Status, Converter={StaticResource widthConverter}}" />
                         </Frame>
                     </Grid>
                 </SwipeView>

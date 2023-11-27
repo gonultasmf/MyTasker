@@ -55,6 +55,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appicon.png" />
+	  <None Remove="Resources\Images\before.png" />
 	  <None Remove="Resources\Images\favorite.png" />
 	  <None Remove="Resources\Images\favorite_false.png" />
 	  <None Remove="Resources\Images\favorite_true.png" />
@@ -62,6 +63,7 @@
 	  <None Remove="Resources\Images\icontasker.png" />
 	  <None Remove="Resources\Images\menu.png" />
 	  <None Remove="Resources\Images\menudark.png" />
+	  <None Remove="Resources\Images\next.png" />
 	  <None Remove="Resources\Images\recyclebin.png" />
 	  <None Remove="Resources\Images\remove.png" />
 	  <None Remove="Resources\Images\restore.png" />
@@ -102,6 +104,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\CalendarView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\AddTaskPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

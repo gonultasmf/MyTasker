@@ -197,7 +197,8 @@
                                 Text="{Binding Title}"
                                 TextColor="LightGray" />
                             <Label Text="{Binding Content}" TextColor="White" />
-                            <Label Text="{Binding TaskDate}" TextColor="CadetBlue" />
+                            <Label Text="{Binding TaskDate, StringFormat='{0:HH:mm}'}" TextColor="CadetBlue" />
+                            <Label Text="{Binding TaskDate, StringFormat='{0:dd MMMM dddd, yyyy}'}" TextColor="CadetBlue" />
                             <Label Text="{Binding Status}" TextColor="Yellow" />
                         </VerticalStackLayout>
                     </Frame>
