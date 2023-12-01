@@ -42,16 +42,10 @@
                         </Frame.GestureRecognizers>
 
                         <VerticalStackLayout VerticalOptions="Center">
-                            <Label
-                                FontAttributes="Bold"
-                                Text="{Binding Title}"
-                                TextColor="LightGray" />
-                            <Label
-                                LineBreakMode="TailTruncation"
-                                Text="{Binding Content}"
-                                TextColor="White" />
-                            <Label Text="{Binding TaskDate, StringFormat='{0:HH:mm}'}" TextColor="CadetBlue" />
-                            <Label Text="{Binding TaskDate, StringFormat='{0:dd MMMM dddd, yyyy}'}" TextColor="CadetBlue" />
+                            <Label FontAttributes="Bold" Text="{Binding Title}" />
+                            <Label LineBreakMode="TailTruncation" Text="{Binding Content}" />
+                            <Label Text="{Binding TaskDate, StringFormat='{0:HH:mm}'}" />
+                            <Label Text="{Binding TaskDate, StringFormat='{0:dd MMMM dddd, yyyy}'}" />
                         </VerticalStackLayout>
                     </Frame>
                     <Frame
@@ -70,7 +64,6 @@
                             HorizontalOptions="Center"
                             Rotation="90"
                             Text="{Binding Status}"
-                            TextColor="LightGray"
                             VerticalOptions="Center"
                             WidthRequest="{Binding Status, Converter={StaticResource widthConverter}}" />
                     </Frame>

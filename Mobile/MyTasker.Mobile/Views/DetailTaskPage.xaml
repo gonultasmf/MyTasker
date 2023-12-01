@@ -12,8 +12,7 @@
                 Title="Title"
                 Grid.Column="0"
                 AccentColor="Red"
-                Text="{Binding Model.Title}"
-                TitleColor="Black" />
+                Text="{Binding Model.Title}" />
             <ImageButton
                 Grid.Column="1"
                 BackgroundColor="Transparent"
@@ -31,7 +30,6 @@
                 AccentColor="Red"
                 AllowClear="False"
                 Date="{Binding Date}"
-                TitleColor="Black"
                 WidthRequest="185" />
 
             <material:TimePickerField
@@ -48,10 +46,14 @@
         <material:EditorField
             Title="Content"
             AccentColor="Red"
-            Text="{Binding Model.Content}"
-            TitleColor="Black" />
+            Text="{Binding Model.Content}" />
 
-        <Frame BorderColor="LightGray" HeightRequest="100">
+        <Frame
+            BackgroundColor="{AppThemeBinding Light={StaticResource White},
+                                              Dark={StaticResource Black}}"
+            BorderColor="{AppThemeBinding Light=LightGray,
+                                          Dark=DarkGray}"
+            HeightRequest="100">
             <VerticalStackLayout>
                 <Label
                     Padding="0,-5,0,10"
@@ -110,8 +112,7 @@
             Title="Status"
             AccentColor="Red"
             SelectedIndex="{Binding Model.Status}"
-            SelectedValueChangedCommand="{Binding SetStatusCommand}"
-            TitleColor="Black">
+            SelectedValueChangedCommand="{Binding SetStatusCommand}">
             <material:PickerField.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Backlog</x:String>

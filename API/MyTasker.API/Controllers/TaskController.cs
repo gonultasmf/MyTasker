@@ -49,7 +49,15 @@ public class TaskController : ControllerBase
     {
         var result = await _taskModelRepository.GetAllAsync(x => x.IsActive);
 
-        return Ok(result);
+        return Ok(result?.OrderBy(x => x.TaskDate));
+    }
+
+    [HttpGet("GetLastTask")]
+    public async Task<IActionResult> GetLastTask()
+    {
+        var result = await _taskModelRepository.GetAllAsync(x => x.IsActive);
+
+        return Ok(result?.MaxBy(x => x.CreatedDate));
     }
 
     [HttpGet("GetAll/{status}")]

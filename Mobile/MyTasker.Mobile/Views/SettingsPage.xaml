@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MyTasker.Mobile.Views.SettingsPage"
-             Title="Settings">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+<ContentPage
+    x:Class="MyTasker.Mobile.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    Title="Settings">
+    <VerticalStackLayout Padding="15,5" Spacing="10">
+        <material:TextField
+            Title="Title"
+            AccentColor="Red"
+            Text="{Binding Settings.UserName}" />
+
+        <material:PickerField
+            Title="Status"
+            AccentColor="Red"
+            SelectedIndex="{Binding Settings.Theme}"
+            SelectedValueChangedCommand="{Binding SetThemeCommand}">
+            <material:PickerField.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Light</x:String>
+                    <x:String>Dark</x:String>
+                </x:Array>
+            </material:PickerField.ItemsSource>
+        </material:PickerField>
+
+        <Button
+            BackgroundColor="Orange"
+            Command="{Binding SaveCommand}"
+            CornerRadius="20"
+            FontAttributes="Bold"
+            FontSize="Title"
+            HorizontalOptions="Center"
+            Text="SAVE"
+            WidthRequest="150" />
+
+
     </VerticalStackLayout>
 </ContentPage>

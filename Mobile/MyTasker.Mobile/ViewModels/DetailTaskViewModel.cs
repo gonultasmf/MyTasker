@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using FmgLib.HttpClientHelper;
 using MyTasker.Core.Enums;
 using MyTasker.Core.Models;
+using Plugin.LocalNotification;
 using System.Text.Json;
 
 namespace MyTasker.Mobile.ViewModels;
@@ -60,7 +61,23 @@ public partial class DetailTaskViewModel : BaseViewModel
         if (result == null || !bool.Parse(result))
             message = "Task don't save!";
         else
+        {
             message = "Task saved!";
+
+            var request = new NotificationRequest
+            {
+                NotificationId = Model.Id,
+                Title = "My Tasker",
+                Subtitle = Model.Title,
+                Description = Model.Content,
+                BadgeNumber = 42,
+                Schedule = new NotificationRequestSchedule
+                {
+                    NotifyTime = Model.TaskDate
+                }
+            };
+            LocalNotificationCenter.Current.Show(request);
+        }
 
         SemanticScreenReader.Announce(message);
         var toast = Toast.Make(message, CommunityToolkit.Maui.Core.ToastDuration.Long, 20);
